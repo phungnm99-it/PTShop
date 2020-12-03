@@ -37,6 +37,27 @@ namespace PTShop.Data.Migrations
                     b.ToTable("ChiTietDonHangDienThoai");
                 });
 
+            modelBuilder.Entity("PTShop.Data.Entities.Account", b =>
+                {
+                    b.Property<int>("UserId")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int")
+                        .UseIdentityColumn();
+
+                    b.Property<string>("MatKhau")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("TenDangNhap")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<int>("TrangThai")
+                        .HasColumnType("int");
+
+                    b.HasKey("UserId");
+
+                    b.ToTable("Accounts");
+                });
+
             modelBuilder.Entity("PTShop.Data.Entities.AppConfig", b =>
                 {
                     b.Property<string>("Key")
@@ -212,8 +233,8 @@ namespace PTShop.Data.Migrations
                         .HasColumnType("int")
                         .HasDefaultValue(0);
 
-                    b.Property<Guid>("UserId")
-                        .HasColumnType("uniqueidentifier");
+                    b.Property<int>("UserId")
+                        .HasColumnType("int");
 
                     b.HasKey("Id");
 
@@ -233,6 +254,21 @@ namespace PTShop.Data.Migrations
                     b.HasKey("Id");
 
                     b.ToTable("LoaiThongSoKyThuats");
+                });
+
+            modelBuilder.Entity("PTShop.Data.Entities.Role", b =>
+                {
+                    b.Property<int>("RoleId")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int")
+                        .UseIdentityColumn();
+
+                    b.Property<string>("TenVaiTro")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.HasKey("RoleId");
+
+                    b.ToTable("Roles");
                 });
 
             modelBuilder.Entity("PTShop.Data.Entities.ThongSoKyThuat", b =>
@@ -278,6 +314,46 @@ namespace PTShop.Data.Migrations
                             Id = 2,
                             Name = "Samsung"
                         });
+                });
+
+            modelBuilder.Entity("PTShop.Data.Entities.UserRole", b =>
+                {
+                    b.Property<int>("UserId")
+                        .HasColumnType("int");
+
+                    b.Property<int>("RoleId")
+                        .HasColumnType("int");
+
+                    b.HasKey("UserId", "RoleId");
+
+                    b.ToTable("UserRoles");
+                });
+
+            modelBuilder.Entity("PTShop.Data.Entities.Users", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int")
+                        .UseIdentityColumn();
+
+                    b.Property<string>("Email")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<int>("GioiTinh")
+                        .HasColumnType("int");
+
+                    b.Property<string>("HoVaTen")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<DateTime>("NgaySinh")
+                        .HasColumnType("datetime2");
+
+                    b.Property<string>("Sdt")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.HasKey("Id");
+
+                    b.ToTable("Users");
                 });
 
             modelBuilder.Entity("ChiTietDonHangDienThoai", b =>

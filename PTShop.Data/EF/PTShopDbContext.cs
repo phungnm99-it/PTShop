@@ -28,6 +28,11 @@ namespace PTShop.Data.EF
             modelBuilder.ApplyConfiguration(new ThongSoKyThuatConfiguration());
             modelBuilder.ApplyConfiguration(new ThuongHieuConfiguration());
 
+            modelBuilder.ApplyConfiguration(new UsersConfiguration());
+            modelBuilder.ApplyConfiguration(new UserRoleConfiguration());
+            modelBuilder.ApplyConfiguration(new AccountConfiguration());
+            modelBuilder.ApplyConfiguration(new RoleConfiguration());
+
             //Data Seeding
             modelBuilder.Seed();
         }
@@ -38,7 +43,6 @@ namespace PTShop.Data.EF
 
         public DbSet<AppConfig> AppConfigs { get; set; }
 
-
         public DbSet<DienThoai> DienThoais { get; set; }
 
         public DbSet<DonHang> DonHangs { get; set; }
@@ -48,5 +52,13 @@ namespace PTShop.Data.EF
         public DbSet<ThongSoKyThuat> ThongSoKyThuats { get; set; }
 
         public DbSet<ThuongHieu> ThuongHieus { get; set; }
+
+        public DbSet<Users> Users { get; set; }
+
+        public DbSet<UserRole> UserRoles { get; set; }
+
+        public DbSet<Role> Roles { get; set; }
+
+        public DbSet<Account> Accounts { get; set; }
     }
 }
