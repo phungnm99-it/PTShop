@@ -3,6 +3,7 @@ using Microsoft.Extensions.Options;
 using Microsoft.IdentityModel.Protocols;
 using PTShop.Data.Configurations;
 using PTShop.Data.Entities;
+using PTShop.Data.Extensions;
 using System;
 using System.Collections.Generic;
 using System.Text;
@@ -17,8 +18,8 @@ namespace PTShop.Data.EF
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
+            //Configure using Fluent API
             modelBuilder.ApplyConfiguration(new AppConfigConfiguration());
-            //base.OnModelCreating(modelBuilder);
             modelBuilder.ApplyConfiguration(new DienThoaiConfiguration());
             modelBuilder.ApplyConfiguration(new ChiTietDonHangConfiguration());
             modelBuilder.ApplyConfiguration(new ChiTietThongSoKyThuatConfiguration());
@@ -26,6 +27,9 @@ namespace PTShop.Data.EF
             modelBuilder.ApplyConfiguration(new LoaiThongSoKyThuatConfiguration());
             modelBuilder.ApplyConfiguration(new ThongSoKyThuatConfiguration());
             modelBuilder.ApplyConfiguration(new ThuongHieuConfiguration());
+
+            //Data Seeding
+            modelBuilder.Seed();
         }
 
         public DbSet<ChiTietDonHang> ChiTietDonHangs { get; set; }
