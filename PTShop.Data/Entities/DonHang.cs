@@ -8,7 +8,7 @@ namespace PTShop.Data.Entities
     public class DonHang
     {
         public int Id { get; set; }
-        public Guid UserId { get; set; }
+        public int UserId { get; set; }
         public string TenNguoiNhan { get; set; }
         public string DiaChi { get; set; }
         public string Email { get; set; }
