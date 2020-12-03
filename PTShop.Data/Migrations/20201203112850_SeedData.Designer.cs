@@ -3,15 +3,17 @@ using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using PTShop.Data.EF;
 
 namespace PTShop.Data.Migrations
 {
     [DbContext(typeof(PTShopDbContext))]
-    partial class PTShopDbContextModelSnapshot : ModelSnapshot
+    [Migration("20201203112850_SeedData")]
+    partial class SeedData
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -35,27 +37,6 @@ namespace PTShop.Data.Migrations
                     b.HasIndex("ChiTietDonHangsDonHangId", "ChiTietDonHangsDienThoaiId");
 
                     b.ToTable("ChiTietDonHangDienThoai");
-                });
-
-            modelBuilder.Entity("PTShop.Data.Entities.Account", b =>
-                {
-                    b.Property<int>("UserId")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("int")
-                        .UseIdentityColumn();
-
-                    b.Property<string>("MatKhau")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<string>("TenDangNhap")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<int>("TrangThai")
-                        .HasColumnType("int");
-
-                    b.HasKey("UserId");
-
-                    b.ToTable("Accounts");
                 });
 
             modelBuilder.Entity("PTShop.Data.Entities.AppConfig", b =>
@@ -233,8 +214,8 @@ namespace PTShop.Data.Migrations
                         .HasColumnType("int")
                         .HasDefaultValue(0);
 
-                    b.Property<int>("UserId")
-                        .HasColumnType("int");
+                    b.Property<Guid>("UserId")
+                        .HasColumnType("uniqueidentifier");
 
                     b.HasKey("Id");
 
@@ -254,21 +235,6 @@ namespace PTShop.Data.Migrations
                     b.HasKey("Id");
 
                     b.ToTable("LoaiThongSoKyThuats");
-                });
-
-            modelBuilder.Entity("PTShop.Data.Entities.Role", b =>
-                {
-                    b.Property<int>("RoleId")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("int")
-                        .UseIdentityColumn();
-
-                    b.Property<string>("TenVaiTro")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.HasKey("RoleId");
-
-                    b.ToTable("Roles");
                 });
 
             modelBuilder.Entity("PTShop.Data.Entities.ThongSoKyThuat", b =>
@@ -314,46 +280,6 @@ namespace PTShop.Data.Migrations
                             Id = 2,
                             Name = "Samsung"
                         });
-                });
-
-            modelBuilder.Entity("PTShop.Data.Entities.UserRole", b =>
-                {
-                    b.Property<int>("UserId")
-                        .HasColumnType("int");
-
-                    b.Property<int>("RoleId")
-                        .HasColumnType("int");
-
-                    b.HasKey("UserId", "RoleId");
-
-                    b.ToTable("UserRoles");
-                });
-
-            modelBuilder.Entity("PTShop.Data.Entities.Users", b =>
-                {
-                    b.Property<int>("Id")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("int")
-                        .UseIdentityColumn();
-
-                    b.Property<string>("Email")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<int>("GioiTinh")
-                        .HasColumnType("int");
-
-                    b.Property<string>("HoVaTen")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<DateTime>("NgaySinh")
-                        .HasColumnType("datetime2");
-
-                    b.Property<string>("Sdt")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.HasKey("Id");
-
-                    b.ToTable("Users");
                 });
 
             modelBuilder.Entity("ChiTietDonHangDienThoai", b =>
