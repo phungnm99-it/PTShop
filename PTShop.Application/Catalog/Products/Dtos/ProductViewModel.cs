@@ -1,13 +1,12 @@
-﻿using System;
+﻿using PTShop.Data.Enums;
+using System;
 using System.Collections.Generic;
 using System.Text;
-using PTShop.Data.Enums;
 
-namespace PTShop.Data.Entities
+namespace PTShop.Application.Catalog.Products.Dtos
 {
-    public class DienThoai
+    public class ProductViewModel
     {
-        public int Id { get; set; }
         public string Name { get; set; }
         public string HinhAnh { get; set; }
         public TrangThaiDienThoai TinhTrang { get; set; }
@@ -16,9 +15,5 @@ namespace PTShop.Data.Entities
         public int SoLuong { get; set; }
         public DateTime NgayRaMat { get; set; }
         public int ThuongHieuId { get; set; }
-
-        //public ThuongHieu ThuongHieu { get; set; }
-
-        //public List<ChiTietDonHang> ChiTietDonHangs { get; set; }
     }
 }

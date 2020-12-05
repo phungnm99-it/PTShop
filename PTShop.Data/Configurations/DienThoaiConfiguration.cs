@@ -14,6 +14,7 @@ namespace PTShop.Data.Configurations
         {
             builder.ToTable("DienThoais");
             builder.HasKey(x => x.Id);
+            builder.Property(x => x.Id).UseIdentityColumn();
             builder.Property(x => x.Gia).IsRequired();
             builder.Property(x => x.GiaGoc).IsRequired();
             builder.Property(x => x.HinhAnh).IsRequired();
