@@ -10,7 +10,7 @@ using PTShop.Data.EF;
 namespace PTShop.Data.Migrations
 {
     [DbContext(typeof(PTShopDbContext))]
-    [Migration("20201205152938_Init")]
+    [Migration("20201205154117_Init")]
     partial class Init
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -221,6 +221,9 @@ namespace PTShop.Data.Migrations
                         .HasDefaultValue("ThanhToanTrucTiep");
 
                     b.Property<DateTime>("NgayDatHang")
+                        .HasColumnType("datetime2");
+
+                    b.Property<DateTime>("NgayGiaoDuKien")
                         .HasColumnType("datetime2");
 
                     b.Property<string>("SoDienThoai")
