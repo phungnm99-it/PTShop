@@ -24,8 +24,8 @@ namespace PTShop.Data.EF
             modelBuilder.ApplyConfiguration(new ChiTietDonHangConfiguration());
             modelBuilder.ApplyConfiguration(new ChiTietThongSoKyThuatConfiguration());
             modelBuilder.ApplyConfiguration(new DonHangConfiguration());
-            modelBuilder.ApplyConfiguration(new LoaiThongSoKyThuatConfiguration());
-            modelBuilder.ApplyConfiguration(new ThongSoKyThuatConfiguration());
+            //modelBuilder.ApplyConfiguration(new LoaiThongSoKyThuatConfiguration());
+            //modelBuilder.ApplyConfiguration(new ThongSoKyThuatConfiguration());
             modelBuilder.ApplyConfiguration(new ThuongHieuConfiguration());
 
             modelBuilder.ApplyConfiguration(new UsersConfiguration());
@@ -39,7 +39,7 @@ namespace PTShop.Data.EF
 
         public DbSet<ChiTietDonHang> ChiTietDonHangs { get; set; }
 
-        public DbSet<ChiTietThongSoKyThuat> chiTietThongSoKyThuats { get; set; }
+        public DbSet<ChiTietThongSoKyThuat> ChiTietThongSoKyThuats { get; set; }
 
         public DbSet<AppConfig> AppConfigs { get; set; }
 
@@ -47,9 +47,9 @@ namespace PTShop.Data.EF
 
         public DbSet<DonHang> DonHangs { get; set; }
 
-        public DbSet<LoaiThongSoKyThuat> LoaiThongSoKyThuats { get; set; }
+        //public DbSet<LoaiThongSoKyThuat> LoaiThongSoKyThuats { get; set; }
 
-        public DbSet<ThongSoKyThuat> ThongSoKyThuats { get; set; }
+        //public DbSet<ThongSoKyThuat> ThongSoKyThuats { get; set; }
 
         public DbSet<ThuongHieu> ThuongHieus { get; set; }
 

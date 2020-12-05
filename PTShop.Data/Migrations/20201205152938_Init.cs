@@ -3,7 +3,7 @@ using Microsoft.EntityFrameworkCore.Migrations;
 
 namespace PTShop.Data.Migrations
 {
-    public partial class Intitial : Migration
+    public partial class Init : Migration
     {
         protected override void Up(MigrationBuilder migrationBuilder)
         {
@@ -11,8 +11,7 @@ namespace PTShop.Data.Migrations
                 name: "Accounts",
                 columns: table => new
                 {
-                    UserId = table.Column<int>(type: "int", nullable: false)
-                        .Annotation("SqlServer:Identity", "1, 1"),
+                    UserId = table.Column<int>(type: "int", nullable: false),
                     TenDangNhap = table.Column<string>(type: "nvarchar(max)", nullable: true),
                     MatKhau = table.Column<string>(type: "nvarchar(max)", nullable: true),
                     TrangThai = table.Column<int>(type: "int", nullable: false)
@@ -53,12 +52,20 @@ namespace PTShop.Data.Migrations
                 columns: table => new
                 {
                     DienThoaiId = table.Column<int>(type: "int", nullable: false),
-                    ThongSoKyThuatId = table.Column<int>(type: "int", nullable: false),
-                    ChiTiet = table.Column<int>(type: "int", nullable: false)
+                    ManHinh = table.Column<string>(type: "nvarchar(max)", nullable: true),
+                    HeDieuHanh = table.Column<string>(type: "nvarchar(max)", nullable: true),
+                    CameraSau = table.Column<string>(type: "nvarchar(max)", nullable: true),
+                    CameraTruoc = table.Column<string>(type: "nvarchar(max)", nullable: true),
+                    CPU = table.Column<string>(type: "nvarchar(max)", nullable: true),
+                    RAM = table.Column<string>(type: "nvarchar(max)", nullable: true),
+                    BoNhoTrong = table.Column<string>(type: "nvarchar(max)", nullable: true),
+                    TheSim = table.Column<string>(type: "nvarchar(max)", nullable: true),
+                    DungLuongPin = table.Column<string>(type: "nvarchar(max)", nullable: true),
+                    NgayRaMat = table.Column<DateTime>(type: "datetime2", nullable: false)
                 },
                 constraints: table =>
                 {
-                    table.PrimaryKey("PK_ChiTietThongSoKyThuats", x => new { x.DienThoaiId, x.ThongSoKyThuatId });
+                    table.PrimaryKey("PK_ChiTietThongSoKyThuats", x => x.DienThoaiId);
                 });
 
             migrationBuilder.CreateTable(
@@ -69,11 +76,10 @@ namespace PTShop.Data.Migrations
                         .Annotation("SqlServer:Identity", "1, 1"),
                     Name = table.Column<string>(type: "nvarchar(max)", nullable: false),
                     HinhAnh = table.Column<string>(type: "nvarchar(max)", nullable: false),
-                    TinhTrang = table.Column<int>(type: "int", nullable: false, defaultValue: 0),
+                    TinhTrang = table.Column<string>(type: "nvarchar(max)", nullable: false, defaultValue: "DangKinhDoanh"),
                     Gia = table.Column<float>(type: "real", nullable: false),
                     GiaGoc = table.Column<float>(type: "real", nullable: false),
                     SoLuong = table.Column<int>(type: "int", nullable: false, defaultValue: 0),
-                    NgayRaMat = table.Column<DateTime>(type: "datetime2", nullable: false),
                     ThuongHieuId = table.Column<int>(type: "int", nullable: false)
                 },
                 constraints: table =>
@@ -93,25 +99,12 @@ namespace PTShop.Data.Migrations
                     Email = table.Column<string>(type: "varchar(max)", unicode: false, nullable: false),
                     SoDienThoai = table.Column<string>(type: "nvarchar(max)", nullable: true),
                     NgayDatHang = table.Column<DateTime>(type: "datetime2", nullable: false),
-                    HinhThucThanhToan = table.Column<int>(type: "int", nullable: false, defaultValue: 0),
-                    TrangThai = table.Column<int>(type: "int", nullable: false, defaultValue: 0)
+                    HinhThucThanhToan = table.Column<string>(type: "nvarchar(max)", nullable: true, defaultValue: "ThanhToanTrucTiep"),
+                    TrangThai = table.Column<string>(type: "nvarchar(max)", nullable: true, defaultValue: "ChuaGiaoHang")
                 },
                 constraints: table =>
                 {
                     table.PrimaryKey("PK_DonHangs", x => x.Id);
-                });
-
-            migrationBuilder.CreateTable(
-                name: "LoaiThongSoKyThuats",
-                columns: table => new
-                {
-                    Id = table.Column<int>(type: "int", nullable: false)
-                        .Annotation("SqlServer:Identity", "1, 1"),
-                    Name = table.Column<string>(type: "nvarchar(max)", nullable: true)
-                },
-                constraints: table =>
-                {
-                    table.PrimaryKey("PK_LoaiThongSoKyThuats", x => x.Id);
                 });
 
             migrationBuilder.CreateTable(
@@ -120,25 +113,11 @@ namespace PTShop.Data.Migrations
                 {
                     RoleId = table.Column<int>(type: "int", nullable: false)
                         .Annotation("SqlServer:Identity", "1, 1"),
-                    TenVaiTro = table.Column<string>(type: "nvarchar(max)", nullable: true)
+                    RoleName = table.Column<string>(type: "nvarchar(max)", nullable: true)
                 },
                 constraints: table =>
                 {
                     table.PrimaryKey("PK_Roles", x => x.RoleId);
-                });
-
-            migrationBuilder.CreateTable(
-                name: "ThongSoKyThuats",
-                columns: table => new
-                {
-                    Id = table.Column<int>(type: "int", nullable: false)
-                        .Annotation("SqlServer:Identity", "1, 1"),
-                    Name = table.Column<string>(type: "nvarchar(max)", nullable: true),
-                    LoaiThongSoKyThuatId = table.Column<int>(type: "int", nullable: false)
-                },
-                constraints: table =>
-                {
-                    table.PrimaryKey("PK_ThongSoKyThuats", x => x.Id);
                 });
 
             migrationBuilder.CreateTable(
@@ -172,46 +151,46 @@ namespace PTShop.Data.Migrations
                 {
                     Id = table.Column<int>(type: "int", nullable: false)
                         .Annotation("SqlServer:Identity", "1, 1"),
-                    Sdt = table.Column<string>(type: "nvarchar(max)", nullable: true),
-                    Email = table.Column<string>(type: "nvarchar(max)", nullable: true),
+                    Sdt = table.Column<string>(type: "varchar(max)", unicode: false, nullable: true),
+                    Email = table.Column<string>(type: "varchar(max)", unicode: false, nullable: true),
                     HoVaTen = table.Column<string>(type: "nvarchar(max)", nullable: true),
                     GioiTinh = table.Column<int>(type: "int", nullable: false),
-                    NgaySinh = table.Column<DateTime>(type: "datetime2", nullable: false)
+                    NgaySinh = table.Column<DateTime>(type: "datetime2", nullable: false),
+                    DiaChi = table.Column<string>(type: "nvarchar(max)", nullable: true)
                 },
                 constraints: table =>
                 {
                     table.PrimaryKey("PK_Users", x => x.Id);
                 });
 
-            migrationBuilder.CreateTable(
-                name: "ChiTietDonHangDienThoai",
-                columns: table => new
+            migrationBuilder.InsertData(
+                table: "AppConfigs",
+                columns: new[] { "Key", "Value" },
+                values: new object[,]
                 {
-                    DienThoaisId = table.Column<int>(type: "int", nullable: false),
-                    ChiTietDonHangsDonHangId = table.Column<int>(type: "int", nullable: false),
-                    ChiTietDonHangsDienThoaiId = table.Column<int>(type: "int", nullable: false)
-                },
-                constraints: table =>
-                {
-                    table.PrimaryKey("PK_ChiTietDonHangDienThoai", x => new { x.DienThoaisId, x.ChiTietDonHangsDonHangId, x.ChiTietDonHangsDienThoaiId });
-                    table.ForeignKey(
-                        name: "FK_ChiTietDonHangDienThoai_ChiTietDonHangs_ChiTietDonHangsDonHangId_ChiTietDonHangsDienThoaiId",
-                        columns: x => new { x.ChiTietDonHangsDonHangId, x.ChiTietDonHangsDienThoaiId },
-                        principalTable: "ChiTietDonHangs",
-                        principalColumns: new[] { "DonHangId", "DienThoaiId" },
-                        onDelete: ReferentialAction.Cascade);
-                    table.ForeignKey(
-                        name: "FK_ChiTietDonHangDienThoai_DienThoais_DienThoaisId",
-                        column: x => x.DienThoaisId,
-                        principalTable: "DienThoais",
-                        principalColumn: "Id",
-                        onDelete: ReferentialAction.Cascade);
+                    { "HomeTitle", "This is homepage of PTShop" },
+                    { "HomeDescription", "This is description of PTShop" }
                 });
 
-            migrationBuilder.CreateIndex(
-                name: "IX_ChiTietDonHangDienThoai_ChiTietDonHangsDonHangId_ChiTietDonHangsDienThoaiId",
-                table: "ChiTietDonHangDienThoai",
-                columns: new[] { "ChiTietDonHangsDonHangId", "ChiTietDonHangsDienThoaiId" });
+            migrationBuilder.InsertData(
+                table: "DienThoais",
+                columns: new[] { "Id", "Gia", "GiaGoc", "HinhAnh", "Name", "SoLuong", "ThuongHieuId", "TinhTrang" },
+                values: new object[,]
+                {
+                    { 1, 5000000f, 4000000f, "https://cdn.tgdd.vn/Products/Images/42/227731/realme-7-043120-113149-400x460.png", "Xiaomi Note 9", 1, 1, "Dang kinh doanh" },
+                    { 2, 5000000f, 4000000f, "https://cdn.tgdd.vn/Products/Images/42/227731/realme-7-043120-113149-400x460.png", "Xiaomi Note 10", 1, 1, "Dang kinh doanh" },
+                    { 3, 5000000f, 4000000f, "https://cdn.tgdd.vn/Products/Images/42/227731/realme-7-043120-113149-400x460.png", "Xiaomi Note 11", 1, 1, "Dang kinh doanh" }
+                });
+
+            migrationBuilder.InsertData(
+                table: "ThuongHieus",
+                columns: new[] { "Id", "Name" },
+                values: new object[,]
+                {
+                    { 1, "Xiaomi" },
+                    { 2, "Samsung" },
+                    { 3, "Nokia" }
+                });
         }
 
         protected override void Down(MigrationBuilder migrationBuilder)
@@ -223,22 +202,19 @@ namespace PTShop.Data.Migrations
                 name: "AppConfigs");
 
             migrationBuilder.DropTable(
-                name: "ChiTietDonHangDienThoai");
+                name: "ChiTietDonHangs");
 
             migrationBuilder.DropTable(
                 name: "ChiTietThongSoKyThuats");
 
             migrationBuilder.DropTable(
+                name: "DienThoais");
+
+            migrationBuilder.DropTable(
                 name: "DonHangs");
 
             migrationBuilder.DropTable(
-                name: "LoaiThongSoKyThuats");
-
-            migrationBuilder.DropTable(
                 name: "Roles");
-
-            migrationBuilder.DropTable(
-                name: "ThongSoKyThuats");
 
             migrationBuilder.DropTable(
                 name: "ThuongHieus");
@@ -248,12 +224,6 @@ namespace PTShop.Data.Migrations
 
             migrationBuilder.DropTable(
                 name: "Users");
-
-            migrationBuilder.DropTable(
-                name: "ChiTietDonHangs");
-
-            migrationBuilder.DropTable(
-                name: "DienThoais");
         }
     }
 }

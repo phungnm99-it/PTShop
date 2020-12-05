@@ -13,6 +13,7 @@ namespace PTShop.Data.Configurations
         {
             builder.ToTable("Accounts");
             builder.HasKey(x => x.UserId);
+            builder.Property(x => x.UserId).ValueGeneratedNever();
         }
     }
 }

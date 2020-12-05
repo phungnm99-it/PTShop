@@ -13,6 +13,9 @@ namespace PTShop.Data.Configurations
         {
             builder.ToTable("Users");
             builder.HasKey(x => x.Id);
+            builder.Property(x => x.Id).UseIdentityColumn();
+            builder.Property(x => x.Email).IsUnicode(false);
+            builder.Property(x => x.Sdt).IsUnicode(false);
         }
     }
 }

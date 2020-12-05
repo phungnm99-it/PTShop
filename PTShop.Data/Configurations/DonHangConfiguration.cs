@@ -14,6 +14,7 @@ namespace PTShop.Data.Configurations
         {
             builder.ToTable("DonHangs");
             builder.HasKey(x => x.Id);
+            builder.Property(x => x.Id).UseIdentityColumn();
             builder.Property(x => x.HinhThucThanhToan).HasDefaultValue(HinhThucThanhToan.ThanhToanTrucTiep);
             builder.Property(x => x.TrangThai).HasDefaultValue(TrangThaiDonHang.ChuaGiaoHang);
             builder.Property(x => x.Email).IsRequired().IsUnicode(false);

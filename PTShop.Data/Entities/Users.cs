@@ -13,5 +13,6 @@ namespace PTShop.Data.Entities
         public string HoVaTen { get; set; }
         public GioiTinh GioiTinh { get; set; }
         public DateTime NgaySinh { get; set; }
+        public string DiaChi { get; set; }
     }
 }

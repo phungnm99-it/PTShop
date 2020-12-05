@@ -19,30 +19,10 @@ namespace PTShop.Data.Migrations
                 .HasAnnotation("Relational:MaxIdentifierLength", 128)
                 .HasAnnotation("ProductVersion", "5.0.0");
 
-            modelBuilder.Entity("ChiTietDonHangDienThoai", b =>
-                {
-                    b.Property<int>("DienThoaisId")
-                        .HasColumnType("int");
-
-                    b.Property<int>("ChiTietDonHangsDonHangId")
-                        .HasColumnType("int");
-
-                    b.Property<int>("ChiTietDonHangsDienThoaiId")
-                        .HasColumnType("int");
-
-                    b.HasKey("DienThoaisId", "ChiTietDonHangsDonHangId", "ChiTietDonHangsDienThoaiId");
-
-                    b.HasIndex("ChiTietDonHangsDonHangId", "ChiTietDonHangsDienThoaiId");
-
-                    b.ToTable("ChiTietDonHangDienThoai");
-                });
-
             modelBuilder.Entity("PTShop.Data.Entities.Account", b =>
                 {
                     b.Property<int>("UserId")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("int")
-                        .UseIdentityColumn();
+                        .HasColumnType("int");
 
                     b.Property<string>("MatKhau")
                         .HasColumnType("nvarchar(max)");
@@ -108,13 +88,37 @@ namespace PTShop.Data.Migrations
                     b.Property<int>("DienThoaiId")
                         .HasColumnType("int");
 
-                    b.Property<int>("ThongSoKyThuatId")
-                        .HasColumnType("int");
+                    b.Property<string>("BoNhoTrong")
+                        .HasColumnType("nvarchar(max)");
 
-                    b.Property<int>("ChiTiet")
-                        .HasColumnType("int");
+                    b.Property<string>("CPU")
+                        .HasColumnType("nvarchar(max)");
 
-                    b.HasKey("DienThoaiId", "ThongSoKyThuatId");
+                    b.Property<string>("CameraSau")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("CameraTruoc")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("DungLuongPin")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("HeDieuHanh")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("ManHinh")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<DateTime>("NgayRaMat")
+                        .HasColumnType("datetime2");
+
+                    b.Property<string>("RAM")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("TheSim")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.HasKey("DienThoaiId");
 
                     b.ToTable("ChiTietThongSoKyThuats");
                 });
@@ -140,9 +144,6 @@ namespace PTShop.Data.Migrations
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<DateTime>("NgayRaMat")
-                        .HasColumnType("datetime2");
-
                     b.Property<int>("SoLuong")
                         .ValueGeneratedOnAdd()
                         .HasColumnType("int")
@@ -151,10 +152,11 @@ namespace PTShop.Data.Migrations
                     b.Property<int>("ThuongHieuId")
                         .HasColumnType("int");
 
-                    b.Property<int>("TinhTrang")
+                    b.Property<string>("TinhTrang")
+                        .IsRequired()
                         .ValueGeneratedOnAdd()
-                        .HasColumnType("int")
-                        .HasDefaultValue(0);
+                        .HasColumnType("nvarchar(max)")
+                        .HasDefaultValue("DangKinhDoanh");
 
                     b.HasKey("Id");
 
@@ -168,10 +170,9 @@ namespace PTShop.Data.Migrations
                             GiaGoc = 4000000f,
                             HinhAnh = "https://cdn.tgdd.vn/Products/Images/42/227731/realme-7-043120-113149-400x460.png",
                             Name = "Xiaomi Note 9",
-                            NgayRaMat = new DateTime(2020, 10, 10, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             SoLuong = 1,
                             ThuongHieuId = 1,
-                            TinhTrang = 0
+                            TinhTrang = "Dang kinh doanh"
                         },
                         new
                         {
@@ -180,10 +181,9 @@ namespace PTShop.Data.Migrations
                             GiaGoc = 4000000f,
                             HinhAnh = "https://cdn.tgdd.vn/Products/Images/42/227731/realme-7-043120-113149-400x460.png",
                             Name = "Xiaomi Note 10",
-                            NgayRaMat = new DateTime(2020, 10, 10, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             SoLuong = 1,
                             ThuongHieuId = 1,
-                            TinhTrang = 0
+                            TinhTrang = "Dang kinh doanh"
                         },
                         new
                         {
@@ -192,10 +192,9 @@ namespace PTShop.Data.Migrations
                             GiaGoc = 4000000f,
                             HinhAnh = "https://cdn.tgdd.vn/Products/Images/42/227731/realme-7-043120-113149-400x460.png",
                             Name = "Xiaomi Note 11",
-                            NgayRaMat = new DateTime(2019, 10, 10, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             SoLuong = 1,
                             ThuongHieuId = 1,
-                            TinhTrang = 0
+                            TinhTrang = "Dang kinh doanh"
                         });
                 });
 
@@ -214,10 +213,10 @@ namespace PTShop.Data.Migrations
                         .IsUnicode(false)
                         .HasColumnType("varchar(max)");
 
-                    b.Property<int>("HinhThucThanhToan")
+                    b.Property<string>("HinhThucThanhToan")
                         .ValueGeneratedOnAdd()
-                        .HasColumnType("int")
-                        .HasDefaultValue(0);
+                        .HasColumnType("nvarchar(max)")
+                        .HasDefaultValue("ThanhToanTrucTiep");
 
                     b.Property<DateTime>("NgayDatHang")
                         .HasColumnType("datetime2");
@@ -228,10 +227,10 @@ namespace PTShop.Data.Migrations
                     b.Property<string>("TenNguoiNhan")
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<int>("TrangThai")
+                    b.Property<string>("TrangThai")
                         .ValueGeneratedOnAdd()
-                        .HasColumnType("int")
-                        .HasDefaultValue(0);
+                        .HasColumnType("nvarchar(max)")
+                        .HasDefaultValue("ChuaGiaoHang");
 
                     b.Property<int>("UserId")
                         .HasColumnType("int");
@@ -241,21 +240,6 @@ namespace PTShop.Data.Migrations
                     b.ToTable("DonHangs");
                 });
 
-            modelBuilder.Entity("PTShop.Data.Entities.LoaiThongSoKyThuat", b =>
-                {
-                    b.Property<int>("Id")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("int")
-                        .UseIdentityColumn();
-
-                    b.Property<string>("Name")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.HasKey("Id");
-
-                    b.ToTable("LoaiThongSoKyThuats");
-                });
-
             modelBuilder.Entity("PTShop.Data.Entities.Role", b =>
                 {
                     b.Property<int>("RoleId")
@@ -263,30 +247,12 @@ namespace PTShop.Data.Migrations
                         .HasColumnType("int")
                         .UseIdentityColumn();
 
-                    b.Property<string>("TenVaiTro")
+                    b.Property<string>("RoleName")
                         .HasColumnType("nvarchar(max)");
 
                     b.HasKey("RoleId");
 
                     b.ToTable("Roles");
-                });
-
-            modelBuilder.Entity("PTShop.Data.Entities.ThongSoKyThuat", b =>
-                {
-                    b.Property<int>("Id")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("int")
-                        .UseIdentityColumn();
-
-                    b.Property<int>("LoaiThongSoKyThuatId")
-                        .HasColumnType("int");
-
-                    b.Property<string>("Name")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.HasKey("Id");
-
-                    b.ToTable("ThongSoKyThuats");
                 });
 
             modelBuilder.Entity("PTShop.Data.Entities.ThuongHieu", b =>
@@ -313,6 +279,11 @@ namespace PTShop.Data.Migrations
                         {
                             Id = 2,
                             Name = "Samsung"
+                        },
+                        new
+                        {
+                            Id = 3,
+                            Name = "Nokia"
                         });
                 });
 
@@ -336,8 +307,12 @@ namespace PTShop.Data.Migrations
                         .HasColumnType("int")
                         .UseIdentityColumn();
 
-                    b.Property<string>("Email")
+                    b.Property<string>("DiaChi")
                         .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("Email")
+                        .IsUnicode(false)
+                        .HasColumnType("varchar(max)");
 
                     b.Property<int>("GioiTinh")
                         .HasColumnType("int");
@@ -349,26 +324,12 @@ namespace PTShop.Data.Migrations
                         .HasColumnType("datetime2");
 
                     b.Property<string>("Sdt")
-                        .HasColumnType("nvarchar(max)");
+                        .IsUnicode(false)
+                        .HasColumnType("varchar(max)");
 
                     b.HasKey("Id");
 
                     b.ToTable("Users");
-                });
-
-            modelBuilder.Entity("ChiTietDonHangDienThoai", b =>
-                {
-                    b.HasOne("PTShop.Data.Entities.DienThoai", null)
-                        .WithMany()
-                        .HasForeignKey("DienThoaisId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
-                    b.HasOne("PTShop.Data.Entities.ChiTietDonHang", null)
-                        .WithMany()
-                        .HasForeignKey("ChiTietDonHangsDonHangId", "ChiTietDonHangsDienThoaiId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
                 });
 #pragma warning restore 612, 618
         }

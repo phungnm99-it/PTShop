@@ -14,7 +14,7 @@ namespace PTShop.Data.Entities
         public string Email { get; set; }
         public string SoDienThoai { get; set; }
         public DateTime NgayDatHang { get; set; }
-        public HinhThucThanhToan HinhThucThanhToan { get; set; }
-        public TrangThaiDonHang TrangThai { get; set; }
+        public string HinhThucThanhToan { get; set; }
+        public string TrangThai { get; set; }
     }
 }

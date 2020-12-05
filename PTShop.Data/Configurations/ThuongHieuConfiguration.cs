@@ -13,6 +13,7 @@ namespace PTShop.Data.Configurations
         {
             builder.ToTable("ThuongHieus");
             builder.HasKey(x => x.Id);
+            builder.Property(x => x.Id).UseIdentityColumn();
         }
     }
 }
