@@ -221,6 +221,9 @@ namespace PTShop.Data.Migrations
                     b.Property<DateTime>("NgayDatHang")
                         .HasColumnType("datetime2");
 
+                    b.Property<DateTime>("NgayGiaoDuKien")
+                        .HasColumnType("datetime2");
+
                     b.Property<string>("SoDienThoai")
                         .HasColumnType("nvarchar(max)");
 

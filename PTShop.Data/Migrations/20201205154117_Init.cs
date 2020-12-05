@@ -99,6 +99,7 @@ namespace PTShop.Data.Migrations
                     Email = table.Column<string>(type: "varchar(max)", unicode: false, nullable: false),
                     SoDienThoai = table.Column<string>(type: "nvarchar(max)", nullable: true),
                     NgayDatHang = table.Column<DateTime>(type: "datetime2", nullable: false),
+                    NgayGiaoDuKien = table.Column<DateTime>(type: "datetime2", nullable: false),
                     HinhThucThanhToan = table.Column<string>(type: "nvarchar(max)", nullable: true, defaultValue: "ThanhToanTrucTiep"),
                     TrangThai = table.Column<string>(type: "nvarchar(max)", nullable: true, defaultValue: "ChuaGiaoHang")
                 },
