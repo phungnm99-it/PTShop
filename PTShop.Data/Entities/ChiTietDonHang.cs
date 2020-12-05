@@ -10,7 +10,5 @@ namespace PTShop.Data.Entities
         public int DienThoaiId { get; set; }
         public int SoLuong { get; set; }
         public float Gia { get; set; }
-
-        public List<DienThoai> DienThoais { get; set; }
     }
 }

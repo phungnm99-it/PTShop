@@ -13,8 +13,6 @@ namespace PTShop.Data.Configurations
         {
             builder.ToTable("ChiTietDonHangs");
             builder.HasKey(x => new { x.DonHangId, x.DienThoaiId});
-
-            //builder.HasOne(x=>x.DienThoaiId)
         }
     }
 }

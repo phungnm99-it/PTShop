@@ -12,7 +12,8 @@ namespace PTShop.Data.Configurations
         public void Configure(EntityTypeBuilder<ChiTietThongSoKyThuat> builder)
         {
             builder.ToTable("ChiTietThongSoKyThuats");
-            builder.HasKey(x => new { x.DienThoaiId, x.ThongSoKyThuatId });
+            builder.HasKey(x => x.DienThoaiId);
+            builder.Property(x => x.DienThoaiId).ValueGeneratedNever();
         }
     }
 }

@@ -19,7 +19,6 @@ namespace PTShop.Data.Configurations
             builder.Property(x => x.GiaGoc).IsRequired();
             builder.Property(x => x.HinhAnh).IsRequired();
             builder.Property(x => x.Name).IsRequired();
-            builder.Property(x => x.NgayRaMat).IsRequired();
             builder.Property(x => x.SoLuong).IsRequired().HasDefaultValue(0);
             builder.Property(x => x.ThuongHieuId).IsRequired();
             builder.Property(x => x.TinhTrang).IsRequired().HasDefaultValue(TrangThaiDienThoai.DangKinhDoanh);
